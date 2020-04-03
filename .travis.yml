@@ -3,6 +3,10 @@ sudo: required
 services: redis-server
 language: crystal
 install:
+  # Upgrade git to the latest version
+  - sudo add-apt-repository ppa:git-core/ppa -y
+  - sudo apt-get update
+  - sudo apt-get install git -y
   # Install the latest version of LibSSH2
   - wget https://launchpad.net/ubuntu/+source/libgpg-error/1.32-1/+build/15118612/+files/libgpg-error0_1.32-1_amd64.deb
   - sudo dpkg -i libgpg-error0_1.32-1_amd64.deb
