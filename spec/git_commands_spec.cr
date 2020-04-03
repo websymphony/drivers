@@ -12,13 +12,17 @@ module PlaceOS::Drivers
     it "should list the revisions to a file in a repository" do
       changes = PlaceOS::Drivers::GitCommands.commits("shard.yml", count: 200)
       (changes.size > 0).should be_true
-      changes.map { |commit| commit[:subject] }.includes?("restructure application").should be_true
+      subjects = changes.map { |commit| commit[:subject] }
+      puts "\n\nCHANGES\n#{subjects}\n"
+      subjects.includes?("restructure application").should be_true
     end
 
     it "should list the revisions of a repository" do
       changes = PlaceOS::Drivers::GitCommands.repository_commits(count: 200)
       (changes.size > 0).should be_true
-      changes.map { |commit| commit[:subject] }.includes?("restructure application").should be_true
+      subjects = changes.map { |commit| commit[:subject] }
+      puts "\n\nREP CHANGES\n#{subjects}\n"
+      subjects.includes?("restructure application").should be_true
     end
 
     it "should checkout a particular revision of a file and then restore it" do
